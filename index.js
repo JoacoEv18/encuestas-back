@@ -7,7 +7,8 @@ require('./database/conexion');
 const path = require('path');
 
 const app = express();
-const personaController = require('./controllers/personaController');
+/* const personaController = require('./controllers/personaController'); */
+const encuestaController = require('./controllers/encuestaController')
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -15,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors());
 app.use(morgan('common'));
 
-app.get('/', async (req, res) => {
+/* app.get('/', async (req, res) => {
     res.json({
         personas: await personaController.findAll()
     });
@@ -25,6 +26,19 @@ app.post('/crear', async (req, res) => {
     const {nombre, apellido, preferencia} = req.body;
     console.log(`${nombre} ${apellido}, ${preferencia}`);
     await personaController.create(req.body)
+    res.send('Persona Agregada')
+}); */
+
+app.get('/', async (req, res) => {
+    res.json({
+        encuesta: await encuestaController.findAll()
+    });
+});
+
+app.post('/crear', async (req, res) => {
+    const {nombre, asistencia, menu} = req.body;
+    console.log(`${nombre} ${asistencia}, ${menu}`);
+    await encuestaController.create(req.body)
     res.send('Persona Agregada')
 });
 

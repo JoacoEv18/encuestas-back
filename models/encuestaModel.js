@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 
-const personaSchema = new Schema({
+const encuestaSchema = new Schema({
     Nombre: {
         type: 'string',
         required: true
     },
-    Apellido: {
+    Asistencia: {
         type: 'string',
         required: true
     },
-    Preferencia: {
+    Menu: {
         type: 'string',
         required: true
     },
@@ -20,6 +20,6 @@ const personaSchema = new Schema({
     }
 });
 
-const Persona = mongoose.model('persona', personaSchema)
+const Encuesta = mongoose.model('encuesta', encuestaSchema)
 
-module.exports = Persona;
+module.exports = Encuesta;
